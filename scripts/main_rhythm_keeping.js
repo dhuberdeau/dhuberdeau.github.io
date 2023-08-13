@@ -35,6 +35,7 @@ for (let c_ = 0; c_ < TAPS_TO_DISPLAY; c_++){
   }
 }
 let chart_display_row = 0;
+let current_x_limit = Math.ceil(TAPS_TO_DISPLAY*TARGET_ITI/1000);
 
 // Create the chart, using initial tap data
 var chart = new Chart(ctx, {
@@ -56,11 +57,11 @@ var chart = new Chart(ctx, {
           position: 'bottom',
           title: {display: true, text: 'Time (sec)'},
           min: 0,
-          max: Math.ceil(TAPS_TO_DISPLAY*TARGET_ITI/1000)},
+          max: current_x_limit},
         y: {
           display: false,
           title: {display: false, text: 'Inter tap interval'},
-          min: chart_display_row - 2,
+          min: chart_display_row - 1,
           max: chart_display_row + 2
         }
       },
@@ -105,6 +106,10 @@ document.onkeydown = function(event){
           borderWidth: 2,
         }
       )
+      if (Math.max(...tapTimes_rel) > current_x_limit) {
+        current_x_limit = Math.max(...tapTimes_rel);
+        chart.options.scales.x.max = current_x_limit;
+      }
       chart.update()
 
       // after data is updated, check if new row is needed:
