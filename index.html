@@ -1,19 +1,102 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Chart with Labels Below</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhythm-keeping task</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/dsp.js/dist/dsp.min.js"></script> -->
 </head>
 <body>
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="chart-labels">
-        <p>Label 1</p>
-        <p>Label 2</p>
-        <p>Label 3</p>
-    </div>
-    <script src="script.js"></script>
+  <div id="menu">
+    <ul>
+      <li><a href="#introduction">Introduction</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#calibration">Calibration</a></li>
+    </ul>
+  </div>
+
+  <section id="introduction">
+    <h1>Welcome to the Rhythm Keeping exercise.</h1>
+    <!-- <div class="spacer"></div> -->
+    <!-- <p class="content-section">This is the introduction section of my website.</p> -->
+    <p style="align-items:left; padding:0px; font-size:24">
+      The rhythm keeping exercise is like playing drums -
+      You must tap with your foot on a footpedal to generate a pattern of
+      beats within a given time period.</P>
+
+    <p style="align-items:left; padding:0px; font-size:24">
+      Using the foot pedal located under your desk, you will tap out the
+      specified pattern of beats.</p>
+
+    <p style="align-items:left; padding:0px; font-size:24font-size:24">
+      The beat pattern is indicated by ones and zeros - ones indicate that
+      you must tap, and zeros indicate that you pause, or withhold your tap
+      until the next beat.</p>
+
+    <p style="align-items:left; padding:0px; font-size:24">
+      When you are ready to try it, scroll to the
+      next section or select Training from the menu at the top of the screen.</p>
+  </section>
+
+  <section id="training">
+    <h1>Training</h1>
+    <div class="spacer">
+      <p style="align-items:left; padding:0px">
+        Welcome to your training. This is where you will learn to tap out a
+        rhythm using your foot pedal.</p>
+
+      <p  style="align-items:left; padding:0px">
+        You should hear a metronome*. The clicks of the metronome dictate the
+        tempo, or the rate, that you should tap. </p>
+
+      <p>
+          Below is an example. Try tapping out the sequence. You will see
+          the timing of your taps appear in the chart below, which already
+          shows an ideal example of what your taps should look like.
+      </p>
+
+      <h3 id="next_text_sequence">1 1 0</h3>
+
+      <div class="chart-container" style="position: relative;     height:15vh; width:50vw">
+          <canvas id="tapTime-chart"></canvas>
+      </div>
+      <div id="plot"></div>
+
+      <div class="footnote">
+        <p> * If you do not hear the metronome,
+        try adjusting your volume or ask the experimenter. To
+        deactivate the metronome, select Toggle metronome. </p>
+      </div>
+
+      <div class="sticky-buttons">
+        <button id="toggle_button">Toggle metronome</button>
+      </div></div>
+  </section>
+
+  <section id="calibration">
+    <h1>Calibration</h1>
+    <p>This is the calibration section of my website.</p>
+  </section>
+
+  <!-- Add the audio element for the beep sound -->
+  <audio id="beepAudio" src="sounds/tic.m4a"></audio>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+  <script src="scripts/intersection_observer_script.js"></script>
+
+  <script src="scripts/main_rhythm_keeping.js"></script>
 </body>
 </html>
