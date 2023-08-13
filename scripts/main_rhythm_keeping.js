@@ -18,6 +18,7 @@ let randomNumber = Math.floor(Math.random() * 100) + 1;
 let tap_length_training = 3;
 const timeOut = 60000; //milliseconds to run experiment.
 const TAPS_TO_DISPLAY = tap_length_training*4;
+const MAX_CHART_X_LIM = 12;
 // const TARGET_ITI = 600;
 
 // Get the canvas element and context
@@ -106,14 +107,23 @@ document.onkeydown = function(event){
           borderWidth: 2,
         }
       )
-      if (Math.max(...tapTimes_rel) > current_x_limit) {
-        current_x_limit = Math.max(...tapTimes_rel);
-        chart.options.scales.x.max = current_x_limit;
+
+      // update chart x-limit if necessary:
+      let current_max_tap_time = Math.max(...tapTimes_rel);
+      let make_new_chart_row = false;
+      if (current_max_tap_time > current_x_limit) {
+        if (current_max_tap_time <= MAX_CHART_X_LIM) {
+          current_x_limit = Math.max(...tapTimes_rel);
+          chart.options.scales.x.max = current_x_limit;
+        } else {
+          make_new_chart_row = true;
+        }
       }
       chart.update()
 
       // after data is updated, check if new row is needed:
-      if (tapTimes_rel.length >= TAPS_TO_DISPLAY) {
+      if (tapTimes_rel.length >= TAPS_TO_DISPLAY ||
+          make_new_chart_row) {
         data_vect = [];
         tapTimes_rel  = [];
         startTime_rel = new Date().getTime();
