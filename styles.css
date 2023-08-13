@@ -1,0 +1,10 @@
+.chart-container {
+    position: relative;
+    margin-bottom: 20px; /* Make space for the labels below */
+}
+
+.chart-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
