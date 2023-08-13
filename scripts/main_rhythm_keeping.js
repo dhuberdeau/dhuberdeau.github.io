@@ -62,7 +62,7 @@ var chart = new Chart(ctx, {
         y: {
           display: false,
           title: {display: false, text: 'Inter tap interval'},
-          min: chart_display_row - 1,
+          min: chart_display_row - 2,
           max: chart_display_row + 2
         }
       },
