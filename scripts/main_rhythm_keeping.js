@@ -85,9 +85,20 @@ document.onkeydown = function(event){
       if (first_tap) {
         startTime_rel = new Date().getTime();
         first_tap = false;
+        tap_time_offset = 600;
+        chart.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
+        )
+        data_set_ind = data_set_ind + 1;
       }
 
-      var timestamp = new Date().getTime();
+      var timestamp = new Date().getTime() + tap_time_offset;
       tapTimes.push(timestamp);
       tapTimes_rel.push((timestamp - startTime_rel)/1000);
       data_vect.push(
@@ -97,16 +108,7 @@ document.onkeydown = function(event){
 
       // Update the data in the chart:
       // data_vect.push(tapTimes_rel)
-      // chart.data.datasets[0].data = data_vect;
-      chart.data.datasets.push(
-        {
-          label: "Tap times",
-          data: data_vect,
-          borderColor: "rgba(255, 99, 132, 1)",
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderWidth: 2,
-        }
-      )
+      chart.data.datasets[data_set_ind].data = data_vect;
 
       // update chart x-limit if necessary:
       let current_max_tap_time = Math.max(...tapTimes_rel);
@@ -124,9 +126,19 @@ document.onkeydown = function(event){
       // after data is updated, check if new row is needed:
       if (tapTimes_rel.length >= TAPS_TO_DISPLAY ||
           make_new_chart_row) {
+        tap_time_offset = 0;
         data_vect = [];
         tapTimes_rel  = [];
         startTime_rel = new Date().getTime();
+        chart.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
+        )
         chart_display_row = chart_display_row - 1;
         chart.options.scales.y.min = chart_display_row - 2;
         chart.options.scales.y.max = chart_display_row + 2;
