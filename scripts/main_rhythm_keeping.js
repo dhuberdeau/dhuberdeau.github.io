@@ -25,6 +25,10 @@ const MAX_CHART_X_LIM = 12;
 const canvas = document.getElementById("tapTime-chart");
 const ctx = canvas.getContext("2d");
 
+// Get the canvas element and context
+const canvas2 = document.getElementById("tapTime-chart2");
+const ctx2 = canvas2.getContext("2d");
+
 // Set up the initial tap data example to dispaly
 let tapTimes = [];
 let vect_seed = 0;
@@ -96,6 +100,9 @@ document.onkeydown = function(event){
           }
         )
         data_set_ind = data_set_ind + 1;
+        setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
+        setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
+             timeOut+750)
       }
 
       var timestamp = new Date().getTime() + tap_time_offset;
@@ -147,38 +154,6 @@ document.onkeydown = function(event){
     }
 }
 
-// n-back task code: (n = 2)
-// const n_back = 2;
-// var num = 0;
-// var sequence = [];
-// var n_expected = 0;
-// var grand_count = 0;
-// var count_expected = [];
-// function changeNumber() {
-//     grand_count++;
-//     num = Math.floor(Math.random()*10);
-//     document.getElementById("n-back-number").innerHTML = num;
-//     setTimeout(function (){
-//         document.getElementById("n-back-number").innerHTML = '*';
-//         }, 750)
-//     sequence.push(num)
-//     if (sequence.length > n_back) {
-//         sequence.shift()
-//     }
-//     if (sequence[0]==num) {
-//         n_expected = n_expected + 1;
-//         count_expected.push(grand_count)
-//     }
-// }
-// var timeoutid = setInterval(changeNumber, 1000);
-//
-// var n_identified = 0;
-// var count_identified = [];
-// function increment() {
-//     n_identified++;
-//     count_identified.push(grand_count)
-// }
-
 // Save an array to a local file:
 function saveArrayToFile(array, filename){
     var array_to_save = new Blob([array.join(", ")],
@@ -207,9 +182,10 @@ function showContent() {
 //     clearTimeout(timeoutid);
 //     alert('Terminate present experiment');
 // }, timeOut)
-setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
-setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
-     timeOut+750)
+
+// setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
+// setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
+//      timeOut+750)
 
 
 

@@ -62,7 +62,12 @@ const options = {
 
 // Create a new Intersection Observer
 const observer = new IntersectionObserver(onSectionInView, options);
+const observer2 = new IntersectionObserver(onSectionInView, options);
 
-// Observe the target section
+// Observe the training section
 const targetSection = document.querySelector('#training');
 observer.observe(targetSection);
+
+// Observe the training-2 section
+const targetSection2 = document.querySelector('#training2');
+observer2.observe(targetSection2);
