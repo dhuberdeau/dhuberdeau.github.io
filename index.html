@@ -104,7 +104,26 @@
 
   <section id="calibration">
     <h1>Calibration</h1>
-    <p>This is the calibration section of my website.</p>
+    <div id="n-back-task" class="spacer">
+            <h3>N-back task.</h3>
+            <p>
+                Pay attention to the numbers streaming below. When the same
+                number is presented with a delay of N = 2, click the button below.
+            </p>
+            <h3 id="n-back-number">0</h3>
+            <input type="button" value="Match occured" onclick="increment()">
+        </div>
+
+        <h3>Rhythm keeping exercise.</h3>
+        <h3>Select a rhythm length.</h3>
+        <select id="T2-selection" onchange="specify_beat_sequence()">
+            <option value="default" selected>Select one</option>
+            <option value="length3">Length 3</option>
+            <option value="length4">Length 4</option>
+            <option value="length5">Length 5</option>
+            <option value="length6">Length 6</option>
+            <option value="length7">Length 7</option>
+        </select>
   </section>
 
   <!-- Add the audio element for the beep sound -->
