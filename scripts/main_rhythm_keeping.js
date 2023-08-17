@@ -224,6 +224,111 @@ function saveArrayToFile(array, filename){
     link.click();
 }
 
+
+var n_identified = 0;
+var count_identified = [];
+function increment() {
+    n_identified++;
+    count_identified.push(grand_count)
+}
+
+function specify_nback_level() {
+    var select = document.getElementById("T1-selection");
+    var option = select.value;
+    var nback_display = document.getElementById("n-back-instructions");
+    var nback_number = document.getElementById("n-back-number");
+    if (option == "default") {
+      nback_display.style.display = "none";
+      nback_number.style.display = "none";
+    }
+    if (option == "n1") {
+      nback_display.style.display = "inline";
+      nback_number.style.display = "block";
+      nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 1, click the button below.</p>"
+    }
+    if (option == "n2") {
+      nback_display.style.display = "inline";
+      nback_number.style.display = "block";
+      nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 2, click the button below.</p>"
+    }
+    if (option == "n3") {
+      nback_display.style.display = "inline";
+      nback_number.style.display = "block";
+      nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 3, click the button below.</p>"
+    }
+}
+
+function specify_beat_sequence() {
+    var select = document.getElementById("T2-selection");
+    var option = select.value;
+    var beat_display = document.getElementById("beat-sequence-display");
+    if (option == "default") {
+        beat_display.style.display = "none";
+    }
+    if (option == "length3") {
+        beat_display.style.display = "inline";
+        beat_display.innerHTML = "<h3>1 1 0</h3>";
+    }
+    if (option == "length4") {
+        var rand_num = Math.random();
+        beat_display.style.display = "inline";
+        if (rand_num < .5) {
+            beat_display.innerHTML = "<h3>1 1 0 0</h3>";
+        }
+        if (rand_num >= .5) {
+            beat_display.innerHTML = "<h3>1 1 1 0</h3>";
+        }
+    }
+    if (option == "length5") {
+        var rand_num = Math.random();
+        beat_display.style.display = "inline";
+        if (rand_num < .25) {
+            beat_display.innerHTML = "<h3>1 1 0 0 0</h3>";
+        }
+        if (rand_num >= .25 && rand_num < .5) {
+            beat_display.innerHTML = "<h3>1 0 1 0 0</h3>";
+        }
+        if (rand_num >= .5 && rand_num < .75) {
+            beat_display.innerHTML = "<h3>1 1 1 0 0</h3>";
+        }
+        if (rand_num >= .75) {
+            beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
+        }
+    }
+    if (option == "length6") {
+        var rand_num = Math.random();
+        beat_display.style.display = "inline";
+        if (rand_num < .25) {
+            beat_display.innerHTML = "<h3>1 1 1 0 0 0</h3>";
+        }
+        if (rand_num >= .25 && rand_num < .5) {
+            beat_display.innerHTML = "<h3>1 1 0 1 0 0</h3>";
+        }
+        if (rand_num >= .5 && rand_num < .75) {
+            beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
+        }
+        if (rand_num >= .75) {
+            beat_display.innerHTML = "<h3>1 0 1 1 0 0</h3>";
+        }
+    }
+    if (option == "length7") {
+        var rand_num = Math.random();
+        beat_display.style.display = "inline";
+        if (rand_num < .25) {
+            beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
+        }
+        if (rand_num >= .25 && rand_num < .5) {
+            beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
+        }
+        if (rand_num >= .5 && rand_num < .75) {
+            beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
+        }
+        if (rand_num >= .75) {
+            beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
+        }
+    }
+}
+
 // function showContent() {
 //     var select = document.getElementById("T1-selection");
 //     var option = select.value;

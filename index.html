@@ -102,23 +102,24 @@
     <h1>Calibration</h1>
     <div id="n-back-task" class="spacer">
         <h3>N-back task.</h3>
-        <p>
-            Pay attention to the numbers streaming below. When the same
-            number is presented with a delay of N = 2, click the button below.
-        </p>
-        <h3 id="n-back-number">0</h3>
-        <input type="button" value="Match occured" onclick="increment()">
+        <select id="T1-selection" onchange="specify_nback_level()">
+            <option value="default" selected>Select one</option>
+            <option value="n1">N = 1</option>
+            <option value="n2">N = 2</option>
+            <option value="n3">N = 3</option>
+        </select>
+        <div id = "n-back-instructions" style="display:none">
+          <p>
+              Pay attention to the numbers streaming below. When the same
+              number is presented with a delay of N = 2, click the button below.
+          </p>
+        </div>
+        <h3 id="n-back-number" style="display:none; margin-bottom:20px">0</h3>
+        <input type="button" value="Match occured" onclick="increment()"
+          style="margin-bottom:20px">
     </div>
 
-    <!-- <p>spacer</p>
-    <p>spacer</p>
-    <p>spacer</p>
-    <p>spacer</p>
-    <p>spacer</p> -->
-
-
-
-    <div id="tap-task3" class="spacer" style="position:relative; top:60px">
+    <div id="tap-task3" class="spacer" style="position:relative; top:160px">
       <h3>Rhythm keeping exercise.</h3>
       <h3>Select a rhythm length.</h3>
       <select id="T2-selection" onchange="specify_beat_sequence()">
@@ -130,6 +131,11 @@
           <option value="length7">Length 7</option>
       </select>
     </div>
+    <div id="beat-sequence-display" style="display:none; position:relative; top:160px">
+            <h3>
+                Test.
+            </h3>
+        </div>
   </section>
 
   <!-- Add the audio element for the beep sound -->
