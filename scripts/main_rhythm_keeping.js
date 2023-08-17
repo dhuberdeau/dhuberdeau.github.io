@@ -144,9 +144,22 @@ document.onkeydown = function(event){
             }
         )
         data_set_ind = data_set_ind + 1;
-        setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
-        setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
-             timeOut+750)
+        setTimeout(function(){
+          iti_array = diffArray(tapTimes);
+          iti_array.push(null);
+          iti_array.push(...count_expected);
+          iti_array.push(null);
+          iti_array.push(...count_identified);
+        }, timeOut+500)
+        setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_nback_data.txt')},
+             timeOut+750);
+        // setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
+        //      timeOut+750)
+        // setTimeout(function(){saveArrayToFile(count_expected, 'count_expected_data.txt')},
+        //     timeOut+750)
+        // setTimeout(function(){saveArrayToFile(count_identified, 'ITI_array_data.txt')},
+        //      timeOut+750)
+         var timeoutid = setInterval(changeNumber, 1000);
       }
 
       var timestamp = new Date().getTime() + tap_time_offset;
@@ -214,6 +227,37 @@ document.onkeydown = function(event){
 
 }
 
+const n_back = 2;
+var num = 0;
+var sequence = [];
+var n_expected = 0;
+var grand_count = 0;
+var count_expected = [];
+function changeNumber() {
+    grand_count++;
+    num = Math.floor(Math.random()*10);
+    document.getElementById("n-back-number").innerHTML = num;
+    setTimeout(function (){
+        document.getElementById("n-back-number").innerHTML = '*';
+        }, 750)
+    sequence.push(num)
+    if (sequence.length > n_back) {
+        sequence.shift()
+    }
+    if (sequence[0]==num) {
+        n_expected = n_expected + 1;
+        count_expected.push(grand_count)
+    }
+}
+// var timeoutid = setInterval(changeNumber, 1000);
+
+var n_identified = 0;
+var count_identified = [];
+function increment() {
+    n_identified++;
+    count_identified.push(grand_count)
+}
+
 // Save an array to a local file:
 function saveArrayToFile(array, filename){
     var array_to_save = new Blob([array.join(", ")],
@@ -222,14 +266,6 @@ function saveArrayToFile(array, filename){
     link.href = URL.createObjectURL(array_to_save);
     link.download = filename;
     link.click();
-}
-
-
-var n_identified = 0;
-var count_identified = [];
-function increment() {
-    n_identified++;
-    count_identified.push(grand_count)
 }
 
 function specify_nback_level() {
@@ -272,60 +308,64 @@ function specify_beat_sequence() {
     if (option == "length4") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
-        if (rand_num < .5) {
-            beat_display.innerHTML = "<h3>1 1 0 0</h3>";
-        }
-        if (rand_num >= .5) {
-            beat_display.innerHTML = "<h3>1 1 1 0</h3>";
-        }
+        beat_display.innerHTML = "<h3>1 1 0 0</h3>";
+        // if (rand_num < .5) {
+        //     beat_display.innerHTML = "<h3>1 1 0 0</h3>";
+        // }
+        // if (rand_num >= .5) {
+        //     beat_display.innerHTML = "<h3>1 1 1 0</h3>";
+        // }
     }
     if (option == "length5") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
-        if (rand_num < .25) {
-            beat_display.innerHTML = "<h3>1 1 0 0 0</h3>";
-        }
-        if (rand_num >= .25 && rand_num < .5) {
-            beat_display.innerHTML = "<h3>1 0 1 0 0</h3>";
-        }
-        if (rand_num >= .5 && rand_num < .75) {
-            beat_display.innerHTML = "<h3>1 1 1 0 0</h3>";
-        }
-        if (rand_num >= .75) {
-            beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
-        }
+        beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
+        // if (rand_num < .25) {
+        //     beat_display.innerHTML = "<h3>1 1 0 0 0</h3>";
+        // }
+        // if (rand_num >= .25 && rand_num < .5) {
+        //     beat_display.innerHTML = "<h3>1 0 1 0 0</h3>";
+        // }
+        // if (rand_num >= .5 && rand_num < .75) {
+        //     beat_display.innerHTML = "<h3>1 1 1 0 0</h3>";
+        // }
+        // if (rand_num >= .75) {
+        //     beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
+        // }
     }
     if (option == "length6") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
-        if (rand_num < .25) {
-            beat_display.innerHTML = "<h3>1 1 1 0 0 0</h3>";
-        }
-        if (rand_num >= .25 && rand_num < .5) {
-            beat_display.innerHTML = "<h3>1 1 0 1 0 0</h3>";
-        }
-        if (rand_num >= .5 && rand_num < .75) {
-            beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
-        }
-        if (rand_num >= .75) {
-            beat_display.innerHTML = "<h3>1 0 1 1 0 0</h3>";
-        }
+        beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
+        // if (rand_num < .25) {
+        //     beat_display.innerHTML = "<h3>1 1 1 0 0 0</h3>";
+        // }
+        // if (rand_num >= .25 && rand_num < .5) {
+        //     beat_display.innerHTML = "<h3>1 1 0 1 0 0</h3>";
+        // }
+        // if (rand_num >= .5 && rand_num < .75) {
+        //     beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
+        // }
+        // if (rand_num >= .75) {
+        //     beat_display.innerHTML = "<h3>1 0 1 1 0 0</h3>";
+        // }
     }
     if (option == "length7") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
-        if (rand_num < .25) {
-            beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
-        }
-        if (rand_num >= .25 && rand_num < .5) {
-            beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
-        }
-        if (rand_num >= .5 && rand_num < .75) {
-            beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
-        }
-        if (rand_num >= .75) {
-            beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
-        }
+        beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
+        // if (rand_num < .25) {
+        //     beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
+        // }
+        // if (rand_num >= .25 && rand_num < .5) {
+        //     beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
+        // }
+        // if (rand_num >= .5 && rand_num < .75) {
+        //     beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
+        // }
+        // if (rand_num >= .75) {
+        //     beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
+        // }
     }
 }
 
