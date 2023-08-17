@@ -78,6 +78,41 @@ var chart = new Chart(ctx, {
     }
 });
 
+var chart2 = new Chart(ctx2, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: "Tap times",
+          data: vect,
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderWidth: 2,
+        }
+      ],
+    },
+    options: {
+      scales: {
+        x: {type: 'linear',
+          position: 'bottom',
+          title: {display: true, text: 'Time (sec)'},
+          min: 0,
+          max: current_x_limit},
+        y: {
+          display: false,
+          title: {display: false, text: 'Inter tap interval'},
+          min: chart_display_row - 2,
+          max: chart_display_row + 2
+        }
+      },
+      plugins: {
+            legend: {
+                display: false // Hide legend (dataset label)
+            }
+        }
+    }
+});
+
 chart_display_row = chart_display_row - 1;
 let data_vect = [];
 let tapTimes_rel = [];
@@ -99,6 +134,15 @@ document.onkeydown = function(event){
             borderWidth: 2,
           }
         )
+          chart2.data.datasets.push(
+            {
+              label: "Tap times",
+              data: data_vect,
+              borderColor: "rgba(255, 99, 132, 1)",
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              borderWidth: 2,
+            }
+        )
         data_set_ind = data_set_ind + 1;
         setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
         setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
@@ -116,6 +160,7 @@ document.onkeydown = function(event){
       // Update the data in the chart:
       // data_vect.push(tapTimes_rel)
       chart.data.datasets[data_set_ind].data = data_vect;
+      chart2.data.datasets[data_set_ind].data = data_vect;
 
       // update chart x-limit if necessary:
       let current_max_tap_time = Math.max(...tapTimes_rel);
@@ -124,11 +169,13 @@ document.onkeydown = function(event){
         if (current_max_tap_time <= MAX_CHART_X_LIM) {
           current_x_limit = Math.max(...tapTimes_rel);
           chart.options.scales.x.max = current_x_limit;
+          chart2.options.scales.x.max = current_x_limit;
         } else {
           make_new_chart_row = true;
         }
       }
       chart.update()
+      chart2.update()
 
       // after data is updated, check if new row is needed:
       if (tapTimes_rel.length >= TAPS_TO_DISPLAY ||
@@ -146,12 +193,25 @@ document.onkeydown = function(event){
             borderWidth: 2,
           }
         )
+        chart2.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
+        )
         chart_display_row = chart_display_row - 1;
         chart.options.scales.y.min = chart_display_row - 2;
         chart.options.scales.y.max = chart_display_row + 2;
+        chart2.options.scales.y.min = chart_display_row - 2;
+        chart2.options.scales.y.max = chart_display_row + 2;
         data_set_ind = data_set_ind+1;
       }
     }
+
+
 }
 
 // Save an array to a local file:
@@ -164,19 +224,19 @@ function saveArrayToFile(array, filename){
     link.click();
 }
 
-function showContent() {
-    var select = document.getElementById("T1-selection");
-    var option = select.value;
-    var num_gam = document.getElementById("number-game");
-    var n_back = document.getElementById("n-back-task");
-    if (option == "number-game") {
-        num_gam.style.display = "block";
-        n_back.style.display = "none";
-    } else if (option == "n-back-task") {
-        num_gam.style.display = "none";
-        n_back.style.display = "block";
-    }
-}
+// function showContent() {
+//     var select = document.getElementById("T1-selection");
+//     var option = select.value;
+//     var num_gam = document.getElementById("number-game");
+//     var n_back = document.getElementById("n-back-task");
+//     if (option == "number-game") {
+//         num_gam.style.display = "block";
+//         n_back.style.display = "none";
+//     } else if (option == "n-back-task") {
+//         num_gam.style.display = "none";
+//         n_back.style.display = "block";
+//     }
+// }
 
 // setTimeout(function(){
 //     clearTimeout(timeoutid);
