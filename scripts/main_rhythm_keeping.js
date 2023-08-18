@@ -14,6 +14,7 @@ function diffArray(arr) {
 }
 
 let randomNumber = Math.floor(Math.random() * 100) + 1;
+let n_back = 1; // set this initially, but will get reset once selection is made
 
 let tap_length_training = 3;
 const timeOut = 60000; //milliseconds to run experiment.
@@ -245,25 +246,25 @@ function specify_nback_level() {
     if (option == "default") {
       nback_display.style.display = "none";
       nback_number.style.display = "none";
-      var n_back = 0;
+      n_back = 0;
     }
     if (option == "n1") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 1, click the button below.</p>"
-      var n_back = 1;
+      n_back = 1;
     }
     if (option == "n2") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 2, click the button below.</p>"
-      var n_back = 2;
+      n_back = 2;
     }
     if (option == "n3") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 3, click the button below.</p>"
-      var n_back = 3;
+      n_back = 3;
     }
 }
 
