@@ -227,37 +227,6 @@ document.onkeydown = function(event){
 
 }
 
-const n_back = 2;
-var num = 0;
-var sequence = [];
-var n_expected = 0;
-var grand_count = 0;
-var count_expected = [];
-function changeNumber() {
-    grand_count++;
-    num = Math.floor(Math.random()*10);
-    document.getElementById("n-back-number").innerHTML = num;
-    setTimeout(function (){
-        document.getElementById("n-back-number").innerHTML = '*';
-        }, 750)
-    sequence.push(num)
-    if (sequence.length > n_back) {
-        sequence.shift()
-    }
-    if (sequence[0]==num) {
-        n_expected = n_expected + 1;
-        count_expected.push(grand_count)
-    }
-}
-// var timeoutid = setInterval(changeNumber, 1000);
-
-var n_identified = 0;
-var count_identified = [];
-function increment() {
-    n_identified++;
-    count_identified.push(grand_count)
-}
-
 // Save an array to a local file:
 function saveArrayToFile(array, filename){
     var array_to_save = new Blob([array.join(", ")],
@@ -276,21 +245,25 @@ function specify_nback_level() {
     if (option == "default") {
       nback_display.style.display = "none";
       nback_number.style.display = "none";
+      var n_back = 0;
     }
     if (option == "n1") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 1, click the button below.</p>"
+      var n_back = 1;
     }
     if (option == "n2") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 2, click the button below.</p>"
+      var n_back = 2;
     }
     if (option == "n3") {
       nback_display.style.display = "inline";
       nback_number.style.display = "block";
       nback_display.innerHTML = "<p>Pay attention to the numbers streaming below. When the same number is presented with a delay of 3, click the button below.</p>"
+      var n_back = 3;
     }
 }
 
@@ -368,6 +341,39 @@ function specify_beat_sequence() {
         // }
     }
 }
+
+// Do the n-back task:
+var num = 0;
+var sequence = [-1,-1,-1];
+var n_expected = 0;
+var grand_count = 0;
+var count_expected = [];
+function changeNumber() {
+    grand_count++;
+    num = Math.floor(Math.random()*10);
+    document.getElementById("n-back-number").innerHTML = num;
+    setTimeout(function (){
+        document.getElementById("n-back-number").innerHTML = '*';
+        }, 750)
+    sequence.push(num)
+    if (sequence.length > n_back+1) {
+        sequence.shift()
+    }
+    if (sequence[0]==num) {
+        n_expected = n_expected + 1;
+        count_expected.push(grand_count)
+    }
+}
+// var timeoutid = setInterval(changeNumber, 1000);
+
+var n_identified = 0;
+var count_identified = [];
+function increment() {
+    n_identified++;
+    count_identified.push(grand_count)
+}
+
+
 
 // function showContent() {
 //     var select = document.getElementById("T1-selection");
