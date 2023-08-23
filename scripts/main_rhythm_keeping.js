@@ -14,7 +14,7 @@ function diffArray(arr) {
 }
 
 let randomNumber = Math.floor(Math.random() * 100) + 1;
-let n_back = 1; // set this initially, but will get reset once selection is made
+let n_back = null; // set this initially, but will get reset once selection is made
 let beat_sequence = '';
 
 let tap_length_training = 3;
