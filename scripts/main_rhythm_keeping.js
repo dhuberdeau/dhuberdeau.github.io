@@ -1,5 +1,3 @@
-// const myHeading = document.querySelector("h1");
-// myHeading.textContent = "Interior Design Page..";
 
 function diffArray(arr) {
     var diffs = []
@@ -435,7 +433,6 @@ function changeNumber() {
         count_expected.push(grand_count)
     }
 }
-// var timeoutid = setInterval(changeNumber, 1000);
 
 var n_identified = 0;
 var count_identified = [];
@@ -444,39 +441,3 @@ function increment() {
     count_identified.push(grand_count)
 }
 
-
-
-// function showContent() {
-//     var select = document.getElementById("T1-selection");
-//     var option = select.value;
-//     var num_gam = document.getElementById("number-game");
-//     var n_back = document.getElementById("n-back-task");
-//     if (option == "number-game") {
-//         num_gam.style.display = "block";
-//         n_back.style.display = "none";
-//     } else if (option == "n-back-task") {
-//         num_gam.style.display = "none";
-//         n_back.style.display = "block";
-//     }
-// }
-
-// setTimeout(function(){
-//     clearTimeout(timeoutid);
-//     alert('Terminate present experiment');
-// }, timeOut)
-
-// setTimeout(function(){iti_array = diffArray(tapTimes)}, timeOut+500)
-// setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
-//      timeOut+750)
-
-
-
-// some work to try to get foot-pedal to work with map
-// let var2 = [];
-// const mapFrame = document.getElementById('map-frame');
-// iframe_el = $('#map-frame')
-// iframe_el.addEventListener("keydown", function(){var2.push(1);})
-// mapFrame.contentWindow.document.addEventListener("keydown", function(event){
-//     var2.push(event.key);
-//     console.log('Pressed key: ' + event.key);
-// })
