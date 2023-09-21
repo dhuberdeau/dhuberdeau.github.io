@@ -1,4 +1,5 @@
 
+// Define function that computes the element-by-element difference:
 function diffArray(arr) {
     var diffs = []
     if (arr.length < 2){
@@ -11,6 +12,7 @@ function diffArray(arr) {
     return diffs;
 }
 
+// Define constants for the n-back task and tapping task:
 let randomNumber = Math.floor(Math.random() * 100) + 1;
 let n_back = null; // set this initially, but will get reset once selection is made
 let beat_sequence = '';
@@ -29,6 +31,16 @@ const ctx = canvas.getContext("2d");
 const canvas2 = document.getElementById("tapTime-chart2");
 const ctx2 = canvas2.getContext("2d");
 
+// Get the canvas element and context
+const canvas3 = document.getElementById("tapTime-chart3");
+const ctx3 = canvas3.getContext("2d");
+
+// Define reset page button to re-load the page
+var toggle_button = document.getElementById("reset_page")
+toggle_button.addEventListener("click", function() {
+  location.reload();
+});
+
 // Set up the initial tap data example to dispaly
 let tapTimes = [];
 let vect_seed = 0;
@@ -42,7 +54,21 @@ for (let c_ = 0; c_ < TAPS_TO_DISPLAY; c_++){
 let chart_display_row = 0;
 let current_x_limit = Math.ceil(TAPS_TO_DISPLAY*TARGET_ITI/1000);
 
-// Create the chart, using initial tap data
+let vect2 = []
+let vect2_temp = [0.6, 1.2, 2.4, 3.6, 4.2, 5.4, 6.6, 7.2]
+for (let c_ = 0; c_ < vect2_temp.length; c_++){
+  vect2.push({x: vect2_temp[c_], y: 0});
+}
+
+let vect3 = []
+let vect3_temp = [.6, 1.8, 2.4, 3.6, 6.0, 7.2, 7.8]
+for (let c_ = 0; c_ < vect3_temp.length; c_++){
+  vect3.push({x: vect3_temp[c_], y: 0});
+}
+
+
+
+// Create the first chart, using initial tap data
 var chart = new Chart(ctx, {
     type: "line",
     data: {
@@ -78,13 +104,50 @@ var chart = new Chart(ctx, {
     }
 });
 
+// Create the second chart:
 var chart2 = new Chart(ctx2, {
     type: "line",
     data: {
       datasets: [
         {
           label: "Tap times",
-          data: vect,
+          data: vect2,
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderWidth: 2,
+        }
+      ],
+    },
+    options: {
+      scales: {
+        x: {type: 'linear',
+          position: 'bottom',
+          title: {display: true, text: 'Time (sec)'},
+          min: 0,
+          max: current_x_limit},
+        y: {
+          display: false,
+          title: {display: false, text: 'Inter tap interval'},
+          min: chart_display_row - 2,
+          max: chart_display_row + 2
+        }
+      },
+      plugins: {
+            legend: {
+                display: false // Hide legend (dataset label)
+            }
+        }
+    }
+});
+
+// Create the third chart:
+var chart3 = new Chart(ctx3, {
+    type: "line",
+    data: {
+      datasets: [
+        {
+          label: "Tap times",
+          data: vect3,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           borderWidth: 2,
@@ -134,14 +197,23 @@ document.onkeydown = function(event){
             borderWidth: 2,
           }
         )
-          chart2.data.datasets.push(
-            {
-              label: "Tap times",
-              data: data_vect,
-              borderColor: "rgba(255, 99, 132, 1)",
-              backgroundColor: "rgba(255, 99, 132, 0.2)",
-              borderWidth: 2,
-            }
+        chart2.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
+        )
+        chart3.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
         )
         data_set_ind = data_set_ind + 1;
         setTimeout(function(){
@@ -177,6 +249,7 @@ document.onkeydown = function(event){
       // data_vect.push(tapTimes_rel)
       chart.data.datasets[data_set_ind].data = data_vect;
       chart2.data.datasets[data_set_ind].data = data_vect;
+      chart3.data.datasets[data_set_ind].data = data_vect;
 
       // update chart x-limit if necessary:
       let current_max_tap_time = Math.max(...tapTimes_rel);
@@ -186,12 +259,14 @@ document.onkeydown = function(event){
           current_x_limit = Math.max(...tapTimes_rel);
           chart.options.scales.x.max = current_x_limit;
           chart2.options.scales.x.max = current_x_limit;
+          chart3.options.scales.x.max = current_x_limit;
         } else {
           make_new_chart_row = true;
         }
       }
       chart.update()
       chart2.update()
+      chart3.update()
 
       // after data is updated, check if new row is needed:
       if (tapTimes_rel.length >= TAPS_TO_DISPLAY ||
@@ -218,11 +293,22 @@ document.onkeydown = function(event){
             borderWidth: 2,
           }
         )
+        chart3.data.datasets.push(
+          {
+            label: "Tap times",
+            data: data_vect,
+            borderColor: "rgba(255, 99, 132, 1)",
+            backgroundColor: "rgba(255, 99, 132, 0.2)",
+            borderWidth: 2,
+          }
+        )
         chart_display_row = chart_display_row - 1;
         chart.options.scales.y.min = chart_display_row - 2;
         chart.options.scales.y.max = chart_display_row + 2;
         chart2.options.scales.y.min = chart_display_row - 2;
         chart2.options.scales.y.max = chart_display_row + 2;
+        chart3.options.scales.y.min = chart_display_row - 2;
+        chart3.options.scales.y.max = chart_display_row + 2;
         data_set_ind = data_set_ind+1;
       }
     }
