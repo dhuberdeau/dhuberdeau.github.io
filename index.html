@@ -14,7 +14,12 @@
       <li><a href="#introduction">Introduction</a></li>
       <li><a href="#training">Training</a></li>
       <li><a href="#calibration">Calibration</a></li>
+      <li><a href="#validation">Validation</a></li>
     </ul>
+    <div style="position: fixed; right: 0; top: 20">
+      <button id="reset_page">Reset page</button>
+      <button id="toggle_button">Toggle metronome</button>
+    </div>
   </div>
 
   <section id="introduction">
@@ -71,13 +76,14 @@
 
       <div class="footnote">
         <p> * If you do not hear the metronome,
-        try adjusting your volume or ask the experimenter. To
+        try adjusting your volume or ask the experimenter for help. To
         deactivate the metronome, select Toggle metronome. </p>
       </div>
 
-      <div class="sticky-buttons">
+      <!-- <div class="sticky-buttons">
         <button id="toggle_button">Toggle metronome</button>
-      </div></div>
+      </div> -->
+    </div>
   </section>
 
   <section id="training2">
@@ -98,28 +104,27 @@
       <div id="plot2"></div>
   </section>
 
-  <section id="calibration">
-    <h1>Calibration & Validation</h1>
-    <div id="n-back-task" class="spacer">
-        <h3>N-back task.</h3>
-        <select id="T1-selection" onchange="specify_nback_level()">
-            <option value="default" selected>Select one</option>
-            <option value="n1">N = 1</option>
-            <option value="n2">N = 2</option>
-            <option value="n3">N = 3</option>
-        </select>
-        <div id = "n-back-instructions" style="display:none">
-          <p>
-              Pay attention to the numbers streaming below. When the same
-              number is presented with a delay of N = 2, click the button below.
-          </p>
-        </div>
-        <h3 id="n-back-number" style="display:none; margin-bottom:20px">0</h3>
-        <input type="button" value="Match occured" onclick="increment()"
-          style="margin-bottom:20px">
-    </div>
+  <section id="training3">
+    <h1>Training: Level 3</h1>
+    <div class="spacer">
+      <p style="align-items:left; padding:0px">
+        Welcome to level 3 of your training.</p>
 
-    <div id="tap-task3" class="spacer" style="position:relative; top:160px">
+      <p  style="align-items:left; padding:0px">
+        You will repeat the exercise from Levels 1 & 2 but with an even more complicated
+        rhythm. Begin when you are ready. </p>
+
+      <h3 id="next_text_sequence3">1 0 1 1 0 1 0 0</h3>
+
+      <div class="chart-container" style="position: relative;     height:15vh; width:50vw">
+          <canvas id="tapTime-chart3"></canvas>
+      </div>
+      <div id="plot3"></div>
+  </section>
+
+  <section id="calibration">
+    <h1>Calibration</h1>
+      <div id="tap-task3" class="spacer" style="position:relative; top:0px">
       <h3>Rhythm keeping exercise.</h3>
       <h3>Select a rhythm length.</h3>
       <select id="T2-selection" onchange="specify_beat_sequence()">
@@ -140,6 +145,29 @@
                 Test.
             </h3>
         </div>
+  </section>
+
+  <section id="validation">
+    <h1>Validation</h1>
+    <h3 id="validation_tap_sequence" style="display:none">Your sequence: 1 0 1 1 0 1 0 0</h3>
+    <div id="n-back-task" class="spacer">
+      <h3>N-back task.</h3>
+      <select id="T1-selection" onchange="specify_nback_level()">
+          <option value="default" selected>Select one</option>
+          <option value="n1">N = 1</option>
+          <option value="n2">N = 2</option>
+          <option value="n3">N = 3</option>
+      </select>
+      <div id = "n-back-instructions" style="display:none">
+        <p>
+            Pay attention to the numbers streaming below. When the same
+            number is presented with a delay of N = 2, click the button below.
+        </p>
+      </div>
+      <h3 id="n-back-number" style="display:none; margin-bottom:20px">0</h3>
+      <input type="button" value="Match occured" onclick="increment()"
+        style="margin-bottom:20px">
+  </div>
   </section>
 
   <!-- Add the audio element for the beep sound -->
