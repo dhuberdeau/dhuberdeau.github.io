@@ -228,12 +228,6 @@ document.onkeydown = function(event){
         let file_save_name = 'ITI_array_nback_data_n' + n_back + '_' + beat_sequence
         setTimeout(function(){saveArrayToFile(iti_array, file_save_name + '.txt')},
              timeOut+750);
-        // setTimeout(function(){saveArrayToFile(iti_array, 'ITI_array_data.txt')},
-        //      timeOut+750)
-        // setTimeout(function(){saveArrayToFile(count_expected, 'count_expected_data.txt')},
-        //     timeOut+750)
-        // setTimeout(function(){saveArrayToFile(count_identified, 'ITI_array_data.txt')},
-        //      timeOut+750)
          var timeoutid = setInterval(changeNumber, 1000);
       }
 
@@ -246,7 +240,6 @@ document.onkeydown = function(event){
       );
 
       // Update the data in the chart:
-      // data_vect.push(tapTimes_rel)
       chart.data.datasets[data_set_ind].data = data_vect;
       chart2.data.datasets[data_set_ind].data = data_vect;
       chart3.data.datasets[data_set_ind].data = data_vect;
@@ -312,8 +305,6 @@ document.onkeydown = function(event){
         data_set_ind = data_set_ind+1;
       }
     }
-
-
 }
 
 // Save an array to a local file:
@@ -378,120 +369,42 @@ function specify_beat_sequence() {
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 0 0</h3>";
         beat_sequence = beat_sequence + '1100';
-        // if (rand_num < .5) {
-        //     beat_display.innerHTML = "<h3>1 1 0 0</h3>";
-        // }
-        // if (rand_num >= .5) {
-        //     beat_display.innerHTML = "<h3>1 1 1 0</h3>";
-        // }
     }
     if (option == "length5") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
         beat_sequence = beat_sequence + '11010';
-        // if (rand_num < .25) {
-        //     beat_display.innerHTML = "<h3>1 1 0 0 0</h3>";
-        // }
-        // if (rand_num >= .25 && rand_num < .5) {
-        //     beat_display.innerHTML = "<h3>1 0 1 0 0</h3>";
-        // }
-        // if (rand_num >= .5 && rand_num < .75) {
-        //     beat_display.innerHTML = "<h3>1 1 1 0 0</h3>";
-        // }
-        // if (rand_num >= .75) {
-        //     beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
-        // }
     }
     if (option == "length6") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
         beat_sequence = beat_sequence + '111010';
-        // if (rand_num < .25) {
-        //     beat_display.innerHTML = "<h3>1 1 1 0 0 0</h3>";
-        // }
-        // if (rand_num >= .25 && rand_num < .5) {
-        //     beat_display.innerHTML = "<h3>1 1 0 1 0 0</h3>";
-        // }
-        // if (rand_num >= .5 && rand_num < .75) {
-        //     beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
-        // }
-        // if (rand_num >= .75) {
-        //     beat_display.innerHTML = "<h3>1 0 1 1 0 0</h3>";
-        // }
     }
     if (option == "length7") {
         var rand_num = Math.random();
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
         beat_sequence = beat_sequence + '1101010';
-        // if (rand_num < .25) {
-        //     beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
-        // }
-        // if (rand_num >= .25 && rand_num < .5) {
-        //     beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
-        // }
-        // if (rand_num >= .5 && rand_num < .75) {
-        //     beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
-        // }
-        // if (rand_num >= .75) {
-        //     beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
-        // }
     }
     if (option == "length8") {
       var rand_num = Math.random();
       beat_display.style.display = "inline";
       beat_display.innerHTML = "<h3>1 0 1 1 0 1 0 0</h3>";
       beat_sequence = beat_sequence + '10110100';
-      // if (rand_num < .25) {
-      //     beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
-      // }
-      // if (rand_num >= .25 && rand_num < .5) {
-      //     beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
-      // }
-      // if (rand_num >= .5 && rand_num < .75) {
-      //     beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
-      // }
-      // if (rand_num >= .75) {
-      //     beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
-      // }
     }
     if (option == "length9") {
       var rand_num = Math.random();
       beat_display.style.display = "inline";
       beat_display.innerHTML = "<h3>1 1 0 1 1 1 0 1 0</h3>";
       beat_sequence = beat_sequence + '110111010';
-      // if (rand_num < .25) {
-      //     beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
-      // }
-      // if (rand_num >= .25 && rand_num < .5) {
-      //     beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
-      // }
-      // if (rand_num >= .5 && rand_num < .75) {
-      //     beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
-      // }
-      // if (rand_num >= .75) {
-      //     beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
-      // }
   }
   if (option == "length10") {
     var rand_num = Math.random();
     beat_display.style.display = "inline";
     beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
     beat_sequence = beat_sequence + '1111011010';
-    // if (rand_num < .25) {
-    //     beat_display.innerHTML = "<h3>1 1 0 1 0 0 0</h3>";
-    // }
-    // if (rand_num >= .25 && rand_num < .5) {
-    //     beat_display.innerHTML = "<h3>1 0 1 1 0 0 0</h3>";
-    // }
-    // if (rand_num >= .5 && rand_num < .75) {
-    //     beat_display.innerHTML = "<h3>1 0 1 0 1 0 0</h3>";
-    // }
-    // if (rand_num >= .75) {
-    //     beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
-    // }
   }
 }
 
