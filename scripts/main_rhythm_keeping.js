@@ -14,7 +14,7 @@ function diffArray(arr) {
 
 // Define constants for the n-back task and tapping task:
 let randomNumber = Math.floor(Math.random() * 100) + 1;
-let n_back = null; // set this initially, but will get reset once selection is made
+let n_back = null; // will get reset once selection is made
 let beat_sequence = '';
 
 let tap_length_training = 3;
@@ -225,7 +225,9 @@ document.onkeydown = function(event){
           iti_array.push(null);
           iti_array.push(...raw_nback_numbers);
         }, timeOut+500)
-        let file_save_name = 'ITI_array_nback_data_n' + n_back + '_' + beat_sequence
+        let file_save_name = 'ITI_array_nback_data_n'+n_back+'_'+beat_sequence
+        setTimeout(function(){alert("Experiment complete! You may stop tapping now.")},
+             timeOut+700);
         setTimeout(function(){saveArrayToFile(iti_array, file_save_name + '.txt')},
              timeOut+750);
          var timeoutid = setInterval(changeNumber, 1000);
