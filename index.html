@@ -150,6 +150,26 @@
   <section id="validation">
     <h1>Validation</h1>
     <h3 id="validation_tap_sequence" style="display:none">Your sequence: 1 0 1 1 0 1 0 0</h3>
+    <div id="tap-task4" class="spacer" style="position:relative; top:0px">
+      <h3>Select a rhythm length.</h3>
+      <select id="validation-selection" onchange="specify_beat_sequence_validation()">
+          <option value="default" selected>Select one</option>
+          <option value="length1">Length 1</option>
+          <option value="length3">Length 3</option>
+          <option value="length4">Length 4</option>
+          <option value="length5">Length 5</option>
+          <option value="length6">Length 6</option>
+          <option value="length7">Length 7</option>
+          <option value="length8">Length 8</option>
+          <option value="length9">Length 9</option>
+          <option value="length10">Length 10</option>
+      </select>
+    </div>
+    <div id="beat-sequence-display-validation" style="display:none; position:relative; top:1px">
+      <h3>
+          Test.
+      </h3>
+    </div>
     <div id="n-back-task" class="spacer">
       <h3>N-back task.</h3>
       <select id="T1-selection" onchange="specify_nback_level()">
