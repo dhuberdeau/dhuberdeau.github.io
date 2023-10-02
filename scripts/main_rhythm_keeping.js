@@ -410,6 +410,67 @@ function specify_beat_sequence() {
   }
 }
 
+function specify_beat_sequence_validation() {
+  var select = document.getElementById("validation-selection");
+  var option = select.value;
+  var beat_display = document.getElementById("beat-sequence-display-validation");
+  if (option == "default") {
+      beat_display.style.display = "none";
+  }
+  if (option == "length1") {
+    beat_display.style.display = "inline";
+    beat_display.innerHTML = "<h3>1</h3>";
+    beat_sequence = beat_sequence + '1';
+}
+  if (option == "length3") {
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 0</h3>";
+      beat_sequence = beat_sequence + '110';
+  }
+  if (option == "length4") {
+      var rand_num = Math.random();
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 0 0</h3>";
+      beat_sequence = beat_sequence + '1100';
+  }
+  if (option == "length5") {
+      var rand_num = Math.random();
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 0 1 0</h3>";
+      beat_sequence = beat_sequence + '11010';
+  }
+  if (option == "length6") {
+      var rand_num = Math.random();
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 1 0 1 0</h3>";
+      beat_sequence = beat_sequence + '111010';
+  }
+  if (option == "length7") {
+      var rand_num = Math.random();
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
+      beat_sequence = beat_sequence + '1101010';
+  }
+  if (option == "length8") {
+    var rand_num = Math.random();
+    beat_display.style.display = "inline";
+    beat_display.innerHTML = "<h3>1 0 1 1 0 1 0 0</h3>";
+    beat_sequence = beat_sequence + '10110100';
+  }
+  if (option == "length9") {
+    var rand_num = Math.random();
+    beat_display.style.display = "inline";
+    beat_display.innerHTML = "<h3>1 1 0 1 1 1 0 1 0</h3>";
+    beat_sequence = beat_sequence + '110111010';
+}
+if (option == "length10") {
+  var rand_num = Math.random();
+  beat_display.style.display = "inline";
+  beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
+  beat_sequence = beat_sequence + '1111011010';
+}
+}
+
 // Do the n-back task:
 var num = 0;
 var sequence = [-1,-1,-1];
