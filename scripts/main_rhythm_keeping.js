@@ -183,7 +183,7 @@ let startTime = new Date().getTime();
 let data_set_ind = 0;
 let first_tap = true;
 document.onkeydown = function(event){
-    if (event.code === "KeyB"){
+    if (event.code === "NumLock"){
       if (first_tap) {
         startTime_rel = new Date().getTime();
         first_tap = false;
