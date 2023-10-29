@@ -12,6 +12,23 @@ function diffArray(arr) {
     return diffs;
 }
 
+// Define variables for data collection:
+
+var chart_display_row = 0;
+var data_vect = [];
+var tapTimes_rel = [];
+var startTime = new Date().getTime();
+var data_set_ind = 0;
+var first_tap = true;
+// Define function for resetting data collection:
+function reset_data() {
+  data_vect = [];
+  tapTimes_rel  = [];
+  startTime = new Date().getTime();
+  data_set_ind = 0;
+  first_tap = true; // reset first tap flag
+}
+
 // Define constants for the n-back task and tapping task:
 let randomNumber = Math.floor(Math.random() * 100) + 1;
 let n_back = null; // will get reset once selection is made
@@ -51,7 +68,6 @@ for (let c_ = 0; c_ < TAPS_TO_DISPLAY; c_++){
     vect.push({x: vect_seed + c_*vect_iteration, y: 0});
   }
 }
-let chart_display_row = 0;
 let current_x_limit = Math.ceil(TAPS_TO_DISPLAY*TARGET_ITI/1000);
 
 let vect2 = []
@@ -65,7 +81,6 @@ let vect3_temp = [.6, 1.8, 2.4, 3.6, 6.0, 7.2, 7.8]
 for (let c_ = 0; c_ < vect3_temp.length; c_++){
   vect3.push({x: vect3_temp[c_], y: 0});
 }
-
 
 
 // Create the first chart, using initial tap data
@@ -177,11 +192,6 @@ var chart3 = new Chart(ctx3, {
 });
 
 chart_display_row = chart_display_row - 1;
-let data_vect = [];
-let tapTimes_rel = [];
-let startTime = new Date().getTime();
-let data_set_ind = 0;
-let first_tap = true;
 document.onkeydown = function(event){
     if (event.code === "NumLock"){
       if (first_tap) {
@@ -226,10 +236,11 @@ document.onkeydown = function(event){
           iti_array.push(...raw_nback_numbers);
         }, timeOut+500)
         let file_save_name = 'ITI_array_nback_data_n'+n_back+'_'+beat_sequence
-        setTimeout(function(){alert("Experiment complete! You may stop tapping now.")},
+        setTimeout(function(){alert("Trial complete! You may stop tapping now.")},
              timeOut+700);
         setTimeout(function(){saveArrayToFile(iti_array, file_save_name + '.txt')},
              timeOut+750);
+        setTimeout(function(){reset_data()}, timeOut+800);
          var timeoutid = setInterval(changeNumber, 1000);
       }
 
@@ -360,7 +371,7 @@ function specify_beat_sequence() {
       beat_display.style.display = "inline";
       beat_display.innerHTML = "<h3>1</h3>";
       beat_sequence = beat_sequence + '1';
-  }
+    }
     if (option == "length3") {
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 0</h3>";
@@ -401,13 +412,13 @@ function specify_beat_sequence() {
       beat_display.style.display = "inline";
       beat_display.innerHTML = "<h3>1 1 0 1 1 1 0 1 0</h3>";
       beat_sequence = beat_sequence + '110111010';
-  }
-  if (option == "length10") {
-    var rand_num = Math.random();
-    beat_display.style.display = "inline";
-    beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
-    beat_sequence = beat_sequence + '1111011010';
-  }
+    }
+    if (option == "length10") {
+      var rand_num = Math.random();
+      beat_display.style.display = "inline";
+      beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
+      beat_sequence = beat_sequence + '1111011010';
+    }
 }
 
 function specify_beat_sequence_validation() {
@@ -421,7 +432,7 @@ function specify_beat_sequence_validation() {
     beat_display.style.display = "inline";
     beat_display.innerHTML = "<h3>1</h3>";
     beat_sequence = beat_sequence + '1';
-}
+  }
   if (option == "length3") {
       beat_display.style.display = "inline";
       beat_display.innerHTML = "<h3>1 1 0</h3>";
@@ -462,13 +473,13 @@ function specify_beat_sequence_validation() {
     beat_display.style.display = "inline";
     beat_display.innerHTML = "<h3>1 1 0 1 1 1 0 1 0</h3>";
     beat_sequence = beat_sequence + '110111010';
-}
-if (option == "length10") {
-  var rand_num = Math.random();
-  beat_display.style.display = "inline";
-  beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
-  beat_sequence = beat_sequence + '1111011010';
-}
+  }
+  if (option == "length10") {
+    var rand_num = Math.random();
+    beat_display.style.display = "inline";
+    beat_display.innerHTML = "<h3>1 1 1 1 0 1 1 0 1 0</h3>";
+    beat_sequence = beat_sequence + '1111011010';
+  }
 }
 
 // Do the n-back task:
