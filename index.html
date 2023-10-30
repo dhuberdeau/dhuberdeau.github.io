@@ -14,7 +14,7 @@
       <li><a href="#introduction">Introduction</a></li>
       <li><a href="#training">Training</a></li>
       <li><a href="#calibration">Calibration</a></li>
-      <li><a href="#validation">Validation</a></li>
+      <!-- <li><a href="#validation">Validation</a></li> -->
     </ul>
     <div style="position: fixed; right: 0; top: 20">
       <button id="reset_page">Reset page</button>
@@ -93,7 +93,8 @@
 
       <p  style="align-items:left; padding:0px">
         You will repeat the exercise from Level 1 but with a more complicated
-        rhythm. Begin when you are ready. </p>
+        rhythm. Begin when you are ready, and once you have completed this trial,
+        scroll to the next Training Level. </p>
 
       <h3 id="next_text_sequence2">1 1 0 1 0</h3>
 
@@ -111,7 +112,8 @@
 
       <p  style="align-items:left; padding:0px">
         You will repeat the exercise from Levels 1 & 2 but with an even more complicated
-        rhythm. Begin when you are ready. </p>
+        rhythm. This is your final training round, so begin when you are ready and proceed
+        to the Calibration section when you have completed this Level. </p>
 
       <h3 id="next_text_sequence3">1 0 1 1 0 1 0 0</h3>
 
@@ -125,28 +127,33 @@
     <h1>Calibration</h1>
       <div id="tap-task3" class="spacer" style="position:relative; top:0px">
       <h3>Rhythm keeping exercise.</h3>
+      
+      <p  style="align-items:left; padding:0px">
+        Welcome to the Calibration section, where we will measure your baseline performance 
+        at keeping rhythms. In this section, you will complete
+        a series of exercises just like in the Training Levels, with the exception
+        that there will not be graphical feedback showing your tap sequence or a metronome.
+        The drop-down box below lists rhythm lengths from 3 to 7. Complete each length once, proceeding from 
+        shortest to longest, and notify the experimenter when you have completed the Task.</p>
+      
       <h3>Select a rhythm length.</h3>
       <select id="T2-selection" onchange="specify_beat_sequence()">
           <option value="default" selected>Select one</option>
-          <option value="length1">Length 1</option>
           <option value="length3">Length 3</option>
           <option value="length4">Length 4</option>
           <option value="length5">Length 5</option>
           <option value="length6">Length 6</option>
           <option value="length7">Length 7</option>
-          <option value="length8">Length 8</option>
-          <option value="length9">Length 9</option>
-          <option value="length10">Length 10</option>
       </select>
     </div>
-    <div id="beat-sequence-display" style="display:none; position:relative; top:160px">
+    <div id="beat-sequence-display" style="display:none; position:relative; top:260px">
             <h3>
                 Test.
             </h3>
         </div>
   </section>
 
-  <section id="validation">
+  <!-- <section id="validation">
     <h1>Validation</h1>
     <h3 id="validation_tap_sequence" style="display:none">Your sequence: 1 0 1 1 0 1 0 0</h3>
     <div id="tap-task4" class="spacer" style="position:relative; top:0px">
@@ -187,7 +194,7 @@
       <input type="button" value="Match occured" onclick="increment()"
         style="margin-bottom:20px">
   </div>
-  </section>
+  </section> -->
 
   <!-- Add the audio element for the beep sound -->
   <audio id="beepAudio" src="sounds/tic.m4a"></audio>
