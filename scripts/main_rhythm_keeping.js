@@ -400,6 +400,8 @@ function specify_beat_sequence() {
         beat_display.style.display = "inline";
         beat_display.innerHTML = "<h3>1 1 0 1 0 1 0</h3>";
         beat_sequence = beat_sequence + '1101010';
+        setTimeout(function(){alert("Excersize complete! Your beat sequence is: 11010. You may now proceed to the next task.")},
+             timeOut+1000);
     }
     if (option == "length8") {
       var rand_num = Math.random();
